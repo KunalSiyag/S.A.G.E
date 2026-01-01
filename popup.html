@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { width: 300px; padding: 15px; font-family: sans-serif; background: #15202b; color: white; }
+    .field { margin-bottom: 12px; }
+    label { display: block; font-size: 12px; color: #8899a6; margin-bottom: 4px; }
+    input, textarea, select { 
+      width: 100%; padding: 8px; box-sizing: border-box; 
+      background: #253341; border: 1px solid #38444d; color: white; border-radius: 4px;
+    }
+    button { 
+      width: 100%; padding: 10px; background: #1d9bf0; color: white; 
+      border: none; border-radius: 20px; cursor: pointer; font-weight: bold;
+    }
+    button:hover { background: #1a8cd8; }
+    .status { font-size: 11px; margin-top: 8px; text-align: center; color: #00ba7c; }
+  </style>
+</head>
+<body>
+  <h3>S.A.G.E. Settings</h3>
+  <div class="field">
+    <label>Groq API Key</label>
+    <input type="password" id="apiKey" placeholder="gsk_...">
+  </div>
+  <div class="field">
+    <label>Your Bio/Role</label>
+    <textarea id="userBio" rows="3" placeholder="e.g. AI Researcher, witty tech enthusiast..."></textarea>
+  </div>
+  <div class="field">
+    <label>Reply Tone</label>
+    <select id="tone">
+      <option value="balanced">Balanced</option>
+      <option value="witty">Witty</option>
+      <option value="agree">Supportive</option>
+      <option value="inquisitive">Curious</option>
+    </select>
+  </div>
+  <button id="saveBtn">Save Configuration</button>
+  <div id="status" class="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

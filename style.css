@@ -1,0 +1,46 @@
+.sage-button-container {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.sage-spark-button {
+  background: transparent;
+  border: 1px solid #38444d;
+  color: #1d9bf0;
+  border-radius: 9999px;
+  padding: 0 12px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.sage-spark-button:hover {
+  background: rgba(29, 155, 240, 0.1);
+}
+
+/* Wholesome Notification Style */
+.sage-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1d9bf0;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
