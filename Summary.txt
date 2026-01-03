@@ -1,0 +1,19 @@
+I’m a Software Engineer with a strong foundation in Java and a deep interest in solving real-world problems through code. My technical focus lies in Solidity development, where I am actively building and experimenting with decentralized applications (dApps) and smart contracts using tools like Thirdweb, Ether.js, and Remix IDE. I am especially interested in contributing to open-source blockchain projects geared toward mobile-first platforms and real-world utility.
+
+My full-stack development skills span the MERN stack, with hands-on experience in React.js, Node.js, MongoDB, and Tailwind CSS. I’ve worked on several integrated systems involving IoT devices and cloud services such as AWS Lambda, Firebase, and MongoDB Atlas, combining edge devices with smart contract infrastructure and predictive APIs.
+
+Outside of engineering, I play a strategic role in my gold and pearls retail business, managing financial planning, investment strategies, and legal compliance. This dual exposure to both tech and finance has equipped me with a business-first mindset, the ability to manage complex operations, and a strong sense of financial accountability.
+
+Key Skills:
+
+Full Stack: React.js, Next.js Node.js, MongoDB, Tailwind CSS
+
+Blockchain: Solidity, Web3.js, Thirdweb, Ether.js, Metamask
+
+Cloud & DevOps: AWS EC2, Lambda, Firebase, MongoDB Atlas
+
+IoT & Embedded: ESP32, ESP8266, Sensor Integration
+
+Tools: Git, Razorpay/Stripe APIs, REST APIs, Framer Motion
+
+I’m committed to building scalable, secure, and user-centric solutions that blend technology, design, and strategy. Whether working on blockchain infrastructure, smart agriculture, or consumer-facing applications, I aim to bridge the gap between technical innovation and real-world value.

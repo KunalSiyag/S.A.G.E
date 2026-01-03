@@ -1,0 +1,186 @@
+/* S.A.G.E. Content Script Styles */
+
+.sage-spark-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin-right: 8px;
+}
+
+.sage-spark-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+.sage-spark-button:active {
+  transform: translateY(0);
+}
+
+.sage-spark-button svg {
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(10deg); }
+}
+
+.sage-button-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Notifications */
+.sage-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  min-width: 320px;
+  max-width: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.sage-notification-fade {
+  animation: slideOut 0.3s ease-in;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+.sage-notification-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  gap: 12px;
+}
+
+.sage-notification-content span {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.sage-notification-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.sage-notification-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* Notification types */
+.sage-notification-success {
+  border-left: 4px solid #4caf50;
+}
+
+.sage-notification-error {
+  border-left: 4px solid #f44336;
+}
+
+.sage-notification-warning {
+  border-left: 4px solid #ff9800;
+}
+
+.sage-notification-loading {
+  border-left: 4px solid #667eea;
+}
+
+.sage-notification-info {
+  border-left: 4px solid #2196f3;
+}
+
+/* Loading state for button */
+.sage-spark-button.loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.sage-spark-button.loading::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-left: 6px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Integration with X/Twitter UI */
+[data-testid="toolBar"] .sage-button-container {
+  margin-right: auto;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .sage-notification {
+    background: #2a2a2a;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .sage-notification-content span {
+    color: #e0e0e0;
+  }
+
+  .sage-notification-close {
+    color: #999;
+  }
+
+  .sage-notification-close:hover {
+    background: #3a3a3a;
+    color: #fff;
+  }
+}

@@ -1,43 +1,368 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <title>S.A.G.E. Settings</title>
   <style>
-    body { width: 300px; padding: 15px; font-family: sans-serif; background: #15202b; color: white; }
-    .field { margin-bottom: 12px; }
-    label { display: block; font-size: 12px; color: #8899a6; margin-bottom: 4px; }
-    input, textarea, select { 
-      width: 100%; padding: 8px; box-sizing: border-box; 
-      background: #253341; border: 1px solid #38444d; color: white; border-radius: 4px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    button { 
-      width: 100%; padding: 10px; background: #1d9bf0; color: white; 
-      border: none; border-radius: 20px; cursor: pointer; font-weight: bold;
+
+    body {
+      width: 400px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
     }
-    button:hover { background: #1a8cd8; }
-    .status { font-size: 11px; margin-top: 8px; text-align: center; color: #00ba7c; }
+
+    .container {
+      padding: 0;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      text-align: center;
+      border-bottom: 3px solid #667eea;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .content {
+      background: white;
+      padding: 20px;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #667eea;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: '✨';
+      font-size: 16px;
+    }
+
+    .config-status {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .config-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .config-item:last-child {
+      border-bottom: none;
+    }
+
+    .config-label {
+      font-size: 13px;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .config-value {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .config-value.loaded {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .config-value.missing {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .radio-option {
+      flex: 1;
+    }
+
+    .radio-option input[type="radio"] {
+      display: none;
+    }
+
+    .radio-option label {
+      display: block;
+      padding: 8px 12px;
+      background: #f5f5f5;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .radio-option input[type="radio"]:checked + label {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    .button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 10px;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    .button.secondary {
+      background: #6c757d;
+    }
+
+    .status {
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: block;
+    }
+
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: block;
+    }
+
+    .status.info {
+      background: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+      display: block;
+    }
+
+    .info-box {
+      background: #e7f3ff;
+      border: 1px solid #b3d9ff;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 12px;
+      color: #004085;
+      margin-top: 8px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .stat-card {
+      background: #f8f9fa;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .preview-text {
+      background: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 12px;
+      color: #333;
+      max-height: 100px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      margin-top: 8px;
+    }
+
+    .footer {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    a {
+      color: #667eea;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <h3>S.A.G.E. Settings</h3>
-  <div class="field">
-    <label>Groq API Key</label>
-    <input type="password" id="apiKey" placeholder="gsk_...">
+  <div class="container">
+    <div class="header">
+      <h1>⚡ S.A.G.E.</h1>
+      <p>Social Automation & Generative Echo</p>
+    </div>
+
+    <div class="content">
+      <!-- Configuration Status -->
+      <div class="section">
+        <div class="section-title">Configuration Status</div>
+        <div class="config-status">
+          <div class="config-item">
+            <span class="config-label">API Key (.env)</span>
+            <span class="config-value" id="apiKeyStatus">Checking...</span>
+          </div>
+          <div class="config-item">
+            <span class="config-label">Writing Style (Summary.txt)</span>
+            <span class="config-value" id="summaryStatus">Checking...</span>
+          </div>
+        </div>
+        <div class="info-box">
+          Configuration is loaded from <strong>.env</strong> and <strong>Summary.txt</strong> files in your extension folder.
+        </div>
+      </div>
+
+      <!-- Writing Style Preview -->
+      <div class="section">
+        <div class="section-title">Your Writing Style</div>
+        <div class="preview-text" id="stylePreview">Loading...</div>
+      </div>
+
+      <!-- Style Preferences -->
+      <div class="section">
+        <div class="section-title">Reply Preferences</div>
+        
+        <label>Tone</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="tone-agree" name="tone" value="agree">
+            <label for="tone-agree">Supportive</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="tone-witty" name="tone" value="witty">
+            <label for="tone-witty">Witty</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="tone-balanced" name="tone" value="balanced" checked>
+            <label for="tone-balanced">Balanced</label>
+          </div>
+        </div>
+
+        <label style="margin-top: 15px;">Reply Length</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="length-short" name="length" value="short">
+            <label for="length-short">Short</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="length-medium" name="length" value="medium" checked>
+            <label for="length-medium">Medium</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="length-long" name="length" value="long">
+            <label for="length-long">Long</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="section">
+        <div class="section-title">Usage Stats</div>
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number" id="repliesCount">0</div>
+            <div class="stat-label">Replies Generated</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="repliesRemaining">20</div>
+            <div class="stat-label">Remaining (Hour)</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="button" id="saveBtn">Save Preferences</button>
+      <button class="button secondary" id="reloadBtn">Reload Config Files</button>
+
+      <div class="status" id="status"></div>
+    </div>
+
+    <div class="footer">
+      Made with ❤️ for authentic engagement
+    </div>
   </div>
-  <div class="field">
-    <label>Your Bio/Role</label>
-    <textarea id="userBio" rows="3" placeholder="e.g. AI Researcher, witty tech enthusiast..."></textarea>
-  </div>
-  <div class="field">
-    <label>Reply Tone</label>
-    <select id="tone">
-      <option value="balanced">Balanced</option>
-      <option value="witty">Witty</option>
-      <option value="agree">Supportive</option>
-      <option value="inquisitive">Curious</option>
-    </select>
-  </div>
-  <button id="saveBtn">Save Configuration</button>
-  <div id="status" class="status"></div>
+
   <script src="popup.js"></script>
 </body>
 </html>
